@@ -4,6 +4,7 @@ import Home from '@/pages/Home';
 import Services from '@/pages/Services';
 import About from '@/pages/About';
 import Gallery from '@/pages/Gallery';
+import Contact from '@/pages/Contact';
 
 function Placeholder({ name }: { name: string }) {
   return (
@@ -22,7 +23,7 @@ export default function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/contact" element={<Placeholder name="Contact" />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<Placeholder name="FAQ" />} />
         <Route path="*" element={<Placeholder name="Page not found" />} />
       </Route>
