@@ -3,6 +3,7 @@ import { Layout } from '@/layout/Layout';
 import Home from '@/pages/Home';
 import Services from '@/pages/Services';
 import About from '@/pages/About';
+import Gallery from '@/pages/Gallery';
 
 function Placeholder({ name }: { name: string }) {
   return (
@@ -20,7 +21,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
-        <Route path="/gallery" element={<Placeholder name="Gallery" />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Placeholder name="Contact" />} />
         <Route path="/faq" element={<Placeholder name="FAQ" />} />
         <Route path="*" element={<Placeholder name="Page not found" />} />
