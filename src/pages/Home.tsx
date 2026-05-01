@@ -10,6 +10,7 @@ export default function Home() {
       <Hero />
       <ServicesStrip />
       <HardLuggageCallout />
+      <ProductsCallout />
     </>
   );
 }
@@ -93,6 +94,66 @@ function HardLuggageCallout() {
         </div>
       </div>
     </section>
+  );
+}
+
+function ProductsCallout() {
+  return (
+    <section className="bg-cream" aria-labelledby="products-heading">
+      <div className="container-prose py-14 sm:py-16">
+        <FadeIn>
+          <div className="grid items-center gap-8 rounded-card bg-charcoal px-7 py-9 text-cream shadow-deep sm:grid-cols-[auto_1fr_auto] sm:px-10 sm:py-11">
+            <span className="hidden h-14 w-14 items-center justify-center rounded-full bg-tan/15 text-tan sm:inline-flex">
+              <ShoppingIcon className="h-7 w-7" />
+            </span>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-tan">
+                In-store
+              </p>
+              <h2
+                id="products-heading"
+                className="mt-2 font-display text-2xl font-semibold leading-tight sm:text-3xl"
+              >
+                One of the largest selections of shoe care products in the
+                Midwest.
+              </h2>
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-cream/75">
+                Polish, conditioners, brushes, laces, insoles, and protective
+                treatments — for every leather and every use. Stop by and we
+                will help you match the right product to your shoes.
+              </p>
+            </div>
+            <a
+              href={businessInfo.googleMaps.directionsUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="btn bg-tan text-charcoal hover:bg-cream sm:self-end"
+            >
+              Visit the shop
+            </a>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+function ShoppingIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 8h14l-1.4 11.5c-.1 1-.9 1.5-1.8 1.5H8.2c-.9 0-1.7-.5-1.8-1.5L5 8z" />
+      <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+      <path d="M9 12v2m6-2v2" />
+    </svg>
   );
 }
 
