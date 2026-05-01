@@ -1,0 +1,70 @@
+@import '@fontsource/fraunces/400.css';
+@import '@fontsource/fraunces/500.css';
+@import '@fontsource/fraunces/600.css';
+@import '@fontsource/fraunces/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-cream text-charcoal font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tightish;
+  }
+
+  ::selection {
+    @apply bg-burgundy text-cream;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-burgundy ring-offset-2 ring-offset-cream;
+  }
+}
+
+@layer components {
+  .container-prose {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold tracking-tight transition-all duration-200 ease-gentle min-h-[48px];
+  }
+
+  .btn-primary {
+    @apply btn bg-burgundy text-cream hover:bg-burgundy-700 active:bg-burgundy-800 shadow-soft;
+  }
+
+  .btn-secondary {
+    @apply btn bg-charcoal text-cream hover:bg-ink shadow-soft;
+  }
+
+  .btn-ghost {
+    @apply btn border border-warmgray-300 bg-transparent text-charcoal hover:bg-warmgray-100;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-burgundy;
+  }
+
+  .section {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+
+  .card {
+    @apply rounded-card bg-parchment shadow-card border border-warmgray-200/60;
+  }
+}
