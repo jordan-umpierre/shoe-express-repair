@@ -12,6 +12,7 @@ import {
 } from '@/components/BeforeAfterSlider';
 import { FadeIn } from '@/components/FadeIn';
 import { CTABlock } from '@/components/CTABlock';
+import { SEOHead } from '@/components/SEOHead';
 
 type FilterValue = GalleryCategory | 'all';
 
@@ -34,6 +35,11 @@ export default function Gallery() {
 
   return (
     <>
+      <SEOHead
+        title="Before & After Gallery"
+        description="Real before-and-after repair work from Shoe Express Repair & Shine in Overland Park, KS. Shoes, boots, leather, handbags, and luggage."
+        path="/gallery"
+      />
       <GalleryHero />
       <section className="bg-warmgray-50">
         <div className="container-prose pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pb-24">

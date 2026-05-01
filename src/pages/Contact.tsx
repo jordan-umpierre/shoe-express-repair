@@ -3,11 +3,17 @@ import { businessInfo, formatAddressMultiLine } from '@/config/businessInfo';
 import { homeServices } from '@/config/services';
 import { HoursTable } from '@/components/HoursTable';
 import { FadeIn } from '@/components/FadeIn';
+import { SEOHead } from '@/components/SEOHead';
 
 export default function Contact() {
   const addr = formatAddressMultiLine();
   return (
     <>
+      <SEOHead
+        title="Contact"
+        description="Call or text 913-492-7463. Stop in at 10630 Metcalf Ave Suite A, Overland Park, KS 66212. Walk-ins always welcome — free quotes."
+        path="/contact"
+      />
       <ContactHero />
       <section className="section bg-warmgray-50">
         <div className="container-prose">

@@ -2,10 +2,16 @@ import { Link } from 'react-router-dom';
 import { businessInfo } from '@/config/businessInfo';
 import { FadeIn } from '@/components/FadeIn';
 import { CTABlock } from '@/components/CTABlock';
+import { SEOHead } from '@/components/SEOHead';
 
 export default function About() {
   return (
     <>
+      <SEOHead
+        title="About"
+        description="Locally owned cobbler and leather repair shop in Overland Park, KS for over 25 years. Honest quotes, skilled repair, and the kind of work others won't take on."
+        path="/about"
+      />
       <AboutHero />
       <OurStory />
       <OurCraft />

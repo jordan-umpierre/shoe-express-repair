@@ -10,6 +10,7 @@ import {
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { HoursTable } from '@/components/HoursTable';
 import { CTABlock } from '@/components/CTABlock';
+import { SEOHead } from '@/components/SEOHead';
 import { homeServices } from '@/config/services';
 import { reviews } from '@/config/reviews';
 import { homeGalleryPreview } from '@/config/gallery';
@@ -19,6 +20,11 @@ import { FLOATING_CALL_ANCHOR_ATTR } from '@/layout/FloatingCallButton';
 export default function Home() {
   return (
     <>
+      <SEOHead
+        title="Shoe, Boot, Leather & Luggage Repair"
+        description="Shoe Express Repair & Shine has served Overland Park and the Kansas City metro for over 25 years. Expert shoe, boot, leather, luggage, and handbag repair. Call or text for a quote: 913-492-7463."
+        path="/"
+      />
       <Hero />
       <ServicesStrip />
       <HardLuggageCallout />

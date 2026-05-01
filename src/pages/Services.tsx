@@ -5,6 +5,7 @@ import { serviceCategories } from '@/config/services';
 import { ServiceIcons } from '@/components/icons/ServiceIcons';
 import { FadeIn } from '@/components/FadeIn';
 import { CTABlock } from '@/components/CTABlock';
+import { SEOHead } from '@/components/SEOHead';
 
 export default function Services() {
   const { hash } = useLocation();
@@ -20,6 +21,11 @@ export default function Services() {
 
   return (
     <>
+      <SEOHead
+        title="Repair Services"
+        description="Shoe repair, boot repair, leather repair, handbag, belt, and luggage repair in Overland Park, KS. Including hard-shell and fiberglass luggage. Free quotes — call 913-492-7463."
+        path="/services"
+      />
       <ServicesHero />
       <TurnaroundBanner />
       <ServicesIndex />

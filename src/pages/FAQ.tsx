@@ -3,10 +3,16 @@ import { faqs } from '@/config/faqs';
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { FadeIn } from '@/components/FadeIn';
 import { CTABlock } from '@/components/CTABlock';
+import { SEOHead } from '@/components/SEOHead';
 
 export default function FAQ() {
   return (
     <>
+      <SEOHead
+        title="FAQ"
+        description="Frequently asked questions about shoe, boot, leather, handbag, and luggage repair at Shoe Express Repair & Shine in Overland Park, KS."
+        path="/faq"
+      />
       <FAQHero />
       <section className="section bg-warmgray-50" aria-label="Frequently asked questions">
         <div className="container-prose">
