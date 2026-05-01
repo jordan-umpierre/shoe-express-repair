@@ -11,8 +11,8 @@ import { FAQAccordion } from '@/components/FAQAccordion';
 import { HoursTable } from '@/components/HoursTable';
 import { CTABlock } from '@/components/CTABlock';
 import { SEOHead } from '@/components/SEOHead';
+import { useGooglePlaces } from '@/hooks/useGooglePlaces';
 import { homeServices } from '@/config/services';
-import { reviews } from '@/config/reviews';
 import { homeGalleryPreview } from '@/config/gallery';
 import { homeFAQPreview } from '@/config/faqs';
 import { FLOATING_CALL_ANCHOR_ATTR } from '@/layout/FloatingCallButton';
@@ -459,6 +459,8 @@ function ArrowRight({ className }: { className?: string }) {
 }
 
 function Testimonials() {
+  const { reviews: apiReviews, loading, fallback } = useGooglePlaces();
+
   return (
     <section
       className="section bg-cream"
@@ -486,18 +488,39 @@ function Testimonials() {
           </div>
         </FadeIn>
 
-        <ul
-          className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4"
-          role="list"
-        >
-          {reviews.map((review, idx) => (
-            <li key={review.id}>
-              <FadeIn delay={idx * 0.05} className="h-full">
-                <ReviewCard review={review} />
-              </FadeIn>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-12">
+          {loading ? (
+            <p className="text-center text-warmgray-600">Loading reviews...</p>
+          ) : apiReviews.length > 0 ? (
+            <ul
+              className="grid gap-5 md:grid-cols-2 lg:grid-cols-4"
+              role="list"
+            >
+              {apiReviews.map((review, idx) => (
+                <li key={review.id}>
+                  <FadeIn delay={idx * 0.05} className="h-full">
+                    <ReviewCard
+                      review={{
+                        id: review.id,
+                        rating: review.rating,
+                        body: review.body,
+                        reviewer: review.reviewer,
+                        source: review.source,
+                      }}
+                      photoUrl={review.photoUrl}
+                    />
+                  </FadeIn>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-center text-warmgray-600">
+              {fallback
+                ? 'Using cached reviews. Live data unavailable.'
+                : 'No reviews found.'}
+            </p>
+          )}
+        </div>
 
         <FadeIn delay={0.1}>
           <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -510,10 +533,6 @@ function Testimonials() {
               Read more reviews on Google
               <ExternalArrow className="h-4 w-4" />
             </a>
-            <p className="text-xs text-warmgray-500">
-              Reviews shown above are placeholders. Replace with verified
-              listing reviews before launch.
-            </p>
           </div>
         </FadeIn>
       </div>
