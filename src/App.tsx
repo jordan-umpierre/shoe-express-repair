@@ -5,6 +5,7 @@ import Services from '@/pages/Services';
 import About from '@/pages/About';
 import Gallery from '@/pages/Gallery';
 import Contact from '@/pages/Contact';
+import FAQ from '@/pages/FAQ';
 
 function Placeholder({ name }: { name: string }) {
   return (
@@ -24,7 +25,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/faq" element={<Placeholder name="FAQ" />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="*" element={<Placeholder name="Page not found" />} />
       </Route>
     </Routes>
