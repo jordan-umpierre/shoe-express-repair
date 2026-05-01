@@ -1,7 +1,9 @@
 import { businessInfo } from '@/config/businessInfo';
 import { FadeIn } from '@/components/FadeIn';
 import { ServiceCard } from '@/components/ServiceCard';
+import { ReviewCard, Stars } from '@/components/ReviewCard';
 import { homeServices } from '@/config/services';
+import { reviews } from '@/config/reviews';
 import { FLOATING_CALL_ANCHOR_ATTR } from '@/layout/FloatingCallButton';
 
 export default function Home() {
@@ -12,6 +14,7 @@ export default function Home() {
       <HardLuggageCallout />
       <ProductsCallout />
       <WhyChooseUs />
+      <Testimonials />
     </>
   );
 }
@@ -136,6 +139,87 @@ function ProductsCallout() {
         </FadeIn>
       </div>
     </section>
+  );
+}
+
+function Testimonials() {
+  return (
+    <section
+      className="section bg-cream"
+      aria-labelledby="testimonials-heading"
+    >
+      <div className="container-prose">
+        <FadeIn>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="eyebrow">In our customers' words</p>
+              <h2
+                id="testimonials-heading"
+                className="mt-3 max-w-2xl font-display text-3xl font-semibold leading-tight text-charcoal sm:text-4xl"
+              >
+                The reviews tell the story.
+              </h2>
+            </div>
+            <div className="flex flex-col items-start gap-2 sm:items-end">
+              <Stars rating={5} />
+              <p className="text-sm text-warmgray-700">
+                Based on real Google &amp; Yelp reviews — see the listing for
+                the latest rating.
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+
+        <ul
+          className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4"
+          role="list"
+        >
+          {reviews.map((review, idx) => (
+            <li key={review.id}>
+              <FadeIn delay={idx * 0.05} className="h-full">
+                <ReviewCard review={review} />
+              </FadeIn>
+            </li>
+          ))}
+        </ul>
+
+        <FadeIn delay={0.1}>
+          <div className="mt-10 flex flex-wrap items-center gap-3">
+            <a
+              href={businessInfo.social?.google ?? '#'}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="btn-secondary"
+            >
+              Read more reviews on Google
+              <ExternalArrow className="h-4 w-4" />
+            </a>
+            <p className="text-xs text-warmgray-500">
+              Reviews shown above are placeholders. Replace with verified
+              listing reviews before launch.
+            </p>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+function ExternalArrow({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 11l6-6" />
+      <path d="M6 4h5v5" />
+    </svg>
   );
 }
 
