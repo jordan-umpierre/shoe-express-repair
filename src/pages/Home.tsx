@@ -1,12 +1,58 @@
 import { businessInfo } from '@/config/businessInfo';
 import { FadeIn } from '@/components/FadeIn';
+import { ServiceCard } from '@/components/ServiceCard';
+import { homeServices } from '@/config/services';
 import { FLOATING_CALL_ANCHOR_ATTR } from '@/layout/FloatingCallButton';
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <ServicesStrip />
     </>
+  );
+}
+
+function ServicesStrip() {
+  return (
+    <section className="section bg-cream" aria-labelledby="services-strip-heading">
+      <div className="container-prose">
+        <FadeIn>
+          <p className="eyebrow">What we work on</p>
+          <h2
+            id="services-strip-heading"
+            className="mt-3 max-w-2xl font-display text-3xl font-semibold leading-tight text-charcoal sm:text-4xl"
+          >
+            Six craft specialties under one roof.
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-warmgray-700">
+            Bring it in for a free assessment. If we can repair it, we will
+            tell you how — and what it will cost — before any work begins.
+          </p>
+        </FadeIn>
+
+        <ul
+          className="mt-12 -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-3"
+          role="list"
+        >
+          {homeServices.map((service, idx) => (
+            <li
+              key={service.id}
+              className="w-[78%] shrink-0 snap-start sm:w-auto"
+            >
+              <FadeIn delay={idx * 0.04} className="h-full">
+                <ServiceCard
+                  title={service.title}
+                  teaser={service.teaser}
+                  iconKey={service.iconKey}
+                  href={`/services#${service.id}`}
+                />
+              </FadeIn>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
 
