@@ -11,6 +11,7 @@ export default function Home() {
       <ServicesStrip />
       <HardLuggageCallout />
       <ProductsCallout />
+      <WhyChooseUs />
     </>
   );
 }
@@ -135,6 +136,118 @@ function ProductsCallout() {
         </FadeIn>
       </div>
     </section>
+  );
+}
+
+interface TrustPillar {
+  title: string;
+  body: string;
+  icon: (props: { className?: string }) => JSX.Element;
+}
+
+const trustPillars: TrustPillar[] = [
+  {
+    title: '25+ years of local expertise',
+    body: 'A quarter century of repairs in Overland Park. The kind of experience that lets us look at a shoe and know what it needs.',
+    icon: BadgeIcon,
+  },
+  {
+    title: 'We fix what others will not',
+    body: 'Hard-shell luggage, vintage cowboy boots, designer handbag hardware, salt-damaged leather. If it can be saved, we will tell you.',
+    icon: HandIcon,
+  },
+  {
+    title: 'Walk-ins always welcome',
+    body: 'No appointment needed. Bring your item in during open hours and we will give you an honest quote on the spot.',
+    icon: DoorIcon,
+  },
+  {
+    title: 'Fast turnaround',
+    body: 'Many repairs are completed same day or next day. Complex restorations get a clear timeline before any work begins.',
+    icon: ClockIcon,
+  },
+];
+
+function WhyChooseUs() {
+  return (
+    <section
+      className="section bg-parchment"
+      aria-labelledby="why-choose-heading"
+    >
+      <div className="container-prose">
+        <FadeIn>
+          <p className="eyebrow">Why customers choose us</p>
+          <h2
+            id="why-choose-heading"
+            className="mt-3 max-w-2xl font-display text-3xl font-semibold leading-tight text-charcoal sm:text-4xl"
+          >
+            Skilled hands, honest quotes, and the kind of shop you remember.
+          </h2>
+        </FadeIn>
+
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" role="list">
+          {trustPillars.map((pillar, idx) => {
+            const Icon = pillar.icon;
+            return (
+              <li key={pillar.title}>
+                <FadeIn delay={idx * 0.05} className="h-full">
+                  <article className="flex h-full flex-col rounded-card border border-warmgray-200/70 bg-cream p-6 shadow-soft">
+                    <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-charcoal text-tan">
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <h3 className="font-display text-lg font-semibold leading-tight text-charcoal">
+                      {pillar.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-warmgray-700">
+                      {pillar.body}
+                    </p>
+                  </article>
+                </FadeIn>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function BadgeIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="10" r="6" />
+      <path d="M9 14.5L7.5 21l4.5-3 4.5 3-1.5-6.5" />
+      <path d="M9.5 10l2 2 3-3" />
+    </svg>
+  );
+}
+
+function HandIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M9 11V5a1.5 1.5 0 0 1 3 0v6" />
+      <path d="M12 11V4a1.5 1.5 0 0 1 3 0v7" />
+      <path d="M15 11V6a1.5 1.5 0 0 1 3 0v8c0 4-2.5 7-6.5 7H9c-2 0-3.5-1-4.5-3l-2.5-5c-.4-.8 0-1.7.8-2 .9-.4 2 0 2.4.9L7 16" />
+    </svg>
+  );
+}
+
+function DoorIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
+      <path d="M3 21h18" />
+      <circle cx="15" cy="12" r="0.9" />
+    </svg>
+  );
+}
+
+function ClockIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3.5 2" />
+    </svg>
   );
 }
 
