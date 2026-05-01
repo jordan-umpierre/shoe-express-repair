@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Logo } from '@/components/Logo';
+import { HoursTable } from '@/components/HoursTable';
 import { businessInfo, formatAddressMultiLine } from '@/config/businessInfo';
 import { navLinks } from '@/config/navigation';
 
@@ -58,19 +59,7 @@ export function Footer() {
             <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-tan">
               Hours
             </h4>
-            <ul className="mt-4 space-y-1.5 text-sm">
-              {businessInfo.hours.map((day) => (
-                <li
-                  key={day.key}
-                  className="flex items-baseline justify-between gap-4 text-cream/85"
-                >
-                  <span>{day.label}</span>
-                  <span className="text-cream/65">
-                    {day.closed ? 'Closed' : `${day.open} – ${day.close}`}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <HoursTable variant="dark" className="mt-4" />
           </div>
 
           <div className="lg:col-span-2">
