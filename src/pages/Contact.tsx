@@ -4,9 +4,12 @@ import { homeServices } from '@/config/services';
 import { HoursTable } from '@/components/HoursTable';
 import { FadeIn } from '@/components/FadeIn';
 import { SEOHead } from '@/components/SEOHead';
+import { useGooglePlaces } from '@/hooks/useGooglePlaces';
+import { BusinessInfoWidget } from '@/components/BusinessInfoWidget';
 
 export default function Contact() {
   const addr = formatAddressMultiLine();
+  const { businessInfo: liveBusinessInfo } = useGooglePlaces();
   return (
     <>
       <SEOHead
@@ -81,6 +84,12 @@ export default function Contact() {
                   >
                     Get directions →
                   </a>
+                  {liveBusinessInfo && (
+                    <BusinessInfoWidget
+                      businessInfo={liveBusinessInfo}
+                      className="mt-6"
+                    />
+                  )}
                   <MapFallback />
                 </article>
               </FadeIn>
