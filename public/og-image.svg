@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1F1B17"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.15" cy="0.2" r="0.6">
+      <stop offset="0" stop-color="#7A1F1F" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#7A1F1F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.92" cy="0.85" r="0.55">
+      <stop offset="0" stop-color="#C9A87C" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#C9A87C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- Stitched edge motif -->
+  <g stroke="#C9A87C" stroke-width="2" stroke-dasharray="6 8" opacity="0.45" fill="none">
+    <rect x="40" y="40" width="1120" height="550" rx="28"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="100" y="290" font-family="Georgia, 'Times New Roman', serif" font-weight="600" font-size="92" fill="#F7F2EA" letter-spacing="-2">
+    Shoe Express
+  </text>
+  <text x="100" y="362" font-family="Georgia, 'Times New Roman', serif" font-weight="400" font-style="italic" font-size="48" fill="#C9A87C" letter-spacing="-0.5">
+    Repair &amp; Shine
+  </text>
+
+  <!-- Brand line -->
+  <text x="100" y="460" font-family="Helvetica, Arial, sans-serif" font-weight="500" font-size="30" fill="#F7F2EA" opacity="0.85">
+    We take on repairs that others don't dare to touch.
+  </text>
+
+  <!-- Footer line -->
+  <text x="100" y="540" font-family="Helvetica, Arial, sans-serif" font-weight="600" font-size="24" fill="#C9A87C" letter-spacing="3">
+    OVERLAND PARK, KS  ·  913-492-7463
+  </text>
+
+  <!-- Tag in corner -->
+  <g transform="translate(960, 100)">
+    <rect width="140" height="44" rx="22" fill="#7A1F1F"/>
+    <text x="70" y="29" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="17" fill="#F7F2EA" letter-spacing="2.5">
+      25+ YEARS
+    </text>
+  </g>
+</svg>
