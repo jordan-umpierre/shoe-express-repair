@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import { Logo } from '@/components/Logo';
 import { HoursTable } from '@/components/HoursTable';
+import { useGooglePlaces } from '@/hooks/useGooglePlaces';
+import { BusinessInfoWidget } from '@/components/BusinessInfoWidget';
 import { businessInfo, formatAddressMultiLine } from '@/config/businessInfo';
 import { navLinks } from '@/config/navigation';
 
 export function Footer() {
   const year = new Date().getFullYear();
   const addr = formatAddressMultiLine();
+  const { businessInfo: googleBusinessInfo, fallback } = useGooglePlaces();
 
   return (
     <footer className="bg-charcoal text-cream">
@@ -59,7 +62,12 @@ export function Footer() {
             <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-tan">
               Hours
             </h4>
-            <HoursTable variant="dark" className="mt-4" />
+            {!fallback && googleBusinessInfo && (
+              <BusinessInfoWidget businessInfo={googleBusinessInfo} className="mt-4" />
+            )}
+            {fallback && (
+              <HoursTable variant="dark" className="mt-4" />
+            )}
           </div>
 
           <div className="lg:col-span-2">
