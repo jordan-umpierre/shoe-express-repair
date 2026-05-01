@@ -8,6 +8,7 @@ import {
   PlaceholderImage,
 } from '@/components/BeforeAfterSlider';
 import { FAQAccordion } from '@/components/FAQAccordion';
+import { HoursTable } from '@/components/HoursTable';
 import { homeServices } from '@/config/services';
 import { reviews } from '@/config/reviews';
 import { homeGalleryPreview } from '@/config/gallery';
@@ -25,6 +26,7 @@ export default function Home() {
       <Testimonials />
       <BeforeAfterPreview />
       <FAQPreview />
+      <LocationAndHours />
     </>
   );
 }
@@ -149,6 +151,166 @@ function ProductsCallout() {
         </FadeIn>
       </div>
     </section>
+  );
+}
+
+function LocationAndHours() {
+  const addrLine1 = `${businessInfo.address.street} ${businessInfo.address.suite ?? ''}`.trim();
+  const addrLine2 = `${businessInfo.address.city}, ${businessInfo.address.state} ${businessInfo.address.zip}`;
+
+  return (
+    <section
+      className="section bg-warmgray-50"
+      aria-labelledby="location-heading"
+    >
+      <div className="container-prose">
+        <FadeIn>
+          <p className="eyebrow">Where to find us</p>
+          <h2
+            id="location-heading"
+            className="mt-3 max-w-2xl font-display text-3xl font-semibold leading-tight text-charcoal sm:text-4xl"
+          >
+            Walk in, drop off, talk it through.
+          </h2>
+        </FadeIn>
+
+        <div className="mt-12 grid gap-8 lg:grid-cols-12">
+          <FadeIn delay={0.05} className="lg:col-span-5">
+            <div className="card p-7">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">
+                Visit
+              </h3>
+              <address className="mt-3 not-italic">
+                <p className="font-display text-xl font-semibold text-charcoal">
+                  {addrLine1}
+                </p>
+                <p className="mt-1 text-charcoal">{addrLine2}</p>
+                <p className="mt-3 max-w-sm text-sm leading-relaxed text-warmgray-600">
+                  {businessInfo.landmark}
+                </p>
+              </address>
+              <div className="mt-6 flex flex-wrap gap-2.5">
+                <a
+                  href={businessInfo.googleMaps.directionsUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="btn-primary"
+                >
+                  Get directions
+                </a>
+                <a
+                  href={businessInfo.phone.tel}
+                  className="btn-ghost"
+                >
+                  Call ahead
+                </a>
+              </div>
+
+              <div className="mt-7 border-t border-warmgray-200/80 pt-5">
+                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">
+                  We accept
+                </h3>
+                <ul
+                  className="mt-3 flex flex-wrap gap-2"
+                  role="list"
+                  aria-label="Accepted payment methods"
+                >
+                  {businessInfo.paymentMethods.map((method) => (
+                    <li
+                      key={method}
+                      className="rounded-full border border-warmgray-300 bg-cream px-3 py-1.5 text-xs font-medium text-charcoal"
+                    >
+                      {method}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.1} className="lg:col-span-4">
+            <div className="card p-7">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">
+                Hours
+              </h3>
+              <HoursTable highlightToday className="mt-3" />
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.15} className="lg:col-span-3">
+            <MapFallbackCard />
+          </FadeIn>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MapFallbackCard() {
+  return (
+    <div className="card relative h-full overflow-hidden">
+      {/* [MAP: Replace with real Google Maps embed src]
+          To enable the live map, swap this entire div for:
+          <iframe src={businessInfo.googleMaps.embedUrl} ... /> */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(122,31,31,0.08),_transparent_60%)]" />
+      <div className="absolute inset-0 opacity-60">
+        <svg viewBox="0 0 320 280" className="h-full w-full" aria-hidden="true">
+          <defs>
+            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#D8D1C5" strokeWidth="0.6" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+          <path d="M 0 140 Q 80 100 160 140 T 320 140" stroke="#C9A87C" strokeWidth="2" fill="none" opacity="0.55" />
+          <path d="M 50 0 L 50 280" stroke="#B5AC9D" strokeWidth="1.2" />
+          <path d="M 200 0 L 200 280" stroke="#B5AC9D" strokeWidth="1.2" />
+        </svg>
+      </div>
+      <div className="relative flex h-full min-h-[280px] flex-col justify-between p-7">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-warmgray-500">
+            [MAP placeholder]
+          </p>
+          <p className="mt-3 font-display text-lg font-semibold leading-snug text-charcoal">
+            {businessInfo.address.city}, {businessInfo.address.state}
+          </p>
+          <p className="mt-1 text-sm text-warmgray-600">
+            Off I-435 &amp; Metcalf
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-burgundy text-cream">
+            <PinIconSmall className="h-4 w-4" />
+          </span>
+          <a
+            href={businessInfo.googleMaps.directionsUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="text-sm font-semibold text-burgundy hover:text-burgundy-700"
+          >
+            Open in Google Maps →
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PinIconSmall({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
   );
 }
 
