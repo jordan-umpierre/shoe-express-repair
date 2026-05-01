@@ -7,9 +7,11 @@ import {
   BeforeAfterSlider,
   PlaceholderImage,
 } from '@/components/BeforeAfterSlider';
+import { FAQAccordion } from '@/components/FAQAccordion';
 import { homeServices } from '@/config/services';
 import { reviews } from '@/config/reviews';
 import { homeGalleryPreview } from '@/config/gallery';
+import { homeFAQPreview } from '@/config/faqs';
 import { FLOATING_CALL_ANCHOR_ATTR } from '@/layout/FloatingCallButton';
 
 export default function Home() {
@@ -22,6 +24,7 @@ export default function Home() {
       <WhyChooseUs />
       <Testimonials />
       <BeforeAfterPreview />
+      <FAQPreview />
     </>
   );
 }
@@ -144,6 +147,44 @@ function ProductsCallout() {
             </a>
           </div>
         </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+function FAQPreview() {
+  return (
+    <section
+      className="section bg-cream"
+      aria-labelledby="faq-preview-heading"
+    >
+      <div className="container-prose">
+        <div className="grid gap-12 lg:grid-cols-12">
+          <FadeIn className="lg:col-span-4">
+            <p className="eyebrow">Common questions</p>
+            <h2
+              id="faq-preview-heading"
+              className="mt-3 font-display text-3xl font-semibold leading-tight text-charcoal sm:text-4xl"
+            >
+              Quick answers before you stop in.
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-warmgray-700">
+              The questions we hear most often. If yours is not here, call or
+              text — we will answer it.
+            </p>
+            <Link
+              to="/faq"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-burgundy hover:text-burgundy-700"
+            >
+              See all frequently asked questions
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </FadeIn>
+
+          <FadeIn delay={0.1} className="lg:col-span-8">
+            <FAQAccordion items={homeFAQPreview} defaultOpenId="hard-shell-luggage" />
+          </FadeIn>
+        </div>
       </div>
     </section>
   );
