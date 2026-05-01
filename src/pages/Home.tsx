@@ -9,6 +9,7 @@ import {
 } from '@/components/BeforeAfterSlider';
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { HoursTable } from '@/components/HoursTable';
+import { CTABlock } from '@/components/CTABlock';
 import { homeServices } from '@/config/services';
 import { reviews } from '@/config/reviews';
 import { homeGalleryPreview } from '@/config/gallery';
@@ -27,7 +28,36 @@ export default function Home() {
       <BeforeAfterPreview />
       <FAQPreview />
       <LocationAndHours />
+      <FinalCTA />
     </>
+  );
+}
+
+function FinalCTA() {
+  return (
+    <CTABlock
+      eyebrow="Bring it in"
+      headline="Ready to restore your favorites?"
+      subline="Call or text us for a free quote. Walk-ins welcome — no appointment needed."
+      primary={{
+        label: (
+          <>
+            <PhoneIcon className="h-5 w-5" />
+            {`Call ${businessInfo.phone.display}`}
+          </>
+        ),
+        href: businessInfo.phone.tel,
+      }}
+      secondary={{
+        label: (
+          <>
+            <MessageIcon className="h-5 w-5" />
+            Text for a quote
+          </>
+        ),
+        href: businessInfo.phone.sms,
+      }}
+    />
   );
 }
 
