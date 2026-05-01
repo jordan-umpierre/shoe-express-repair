@@ -4,9 +4,10 @@ import type { Review } from '@/config/reviews';
 interface ReviewCardProps {
   review: Review;
   className?: string;
+  photoUrl?: string;
 }
 
-export function ReviewCard({ review, className }: ReviewCardProps) {
+export function ReviewCard({ review, className, photoUrl }: ReviewCardProps) {
   return (
     <article
       className={clsx(
@@ -16,9 +17,16 @@ export function ReviewCard({ review, className }: ReviewCardProps) {
       aria-label={`Review from ${review.reviewer} on ${review.source}`}
     >
       <Stars rating={review.rating} />
-      <blockquote className="mt-5 flex-1">
+      {photoUrl && (
+        <img
+          src={photoUrl}
+          alt={`Photo from ${review.reviewer}`}
+          className="mt-4 h-32 w-full rounded-sm object-cover"
+        />
+      )}
+      <blockquote className={clsx('flex-1', photoUrl ? 'mt-4' : 'mt-5')}>
         <p className="font-display text-lg leading-relaxed text-charcoal">
-          “{review.body}”
+          "{review.body}"
         </p>
       </blockquote>
       <footer className="mt-6 flex items-center gap-3 border-t border-warmgray-200/70 pt-4">
