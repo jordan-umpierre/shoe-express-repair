@@ -9,7 +9,107 @@ export default function Home() {
     <>
       <Hero />
       <ServicesStrip />
+      <HardLuggageCallout />
     </>
+  );
+}
+
+function HardLuggageCallout() {
+  return (
+    <section
+      className="section bg-warmgray-50"
+      aria-labelledby="hard-luggage-heading"
+    >
+      <div className="container-prose">
+        <div className="grid items-center gap-12 lg:grid-cols-12">
+          <FadeIn className="lg:col-span-7">
+            <p className="eyebrow">Rare capability</p>
+            <h2
+              id="hard-luggage-heading"
+              className="mt-3 font-display text-3xl font-semibold leading-tight text-charcoal sm:text-4xl lg:text-[44px]"
+            >
+              We repair the luggage other shops turn away.
+            </h2>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-warmgray-700">
+              Even hard-shell and fiberglass luggage — most shops will not
+              touch them. We will. Wheels, telescoping handles, zippers,
+              cracked shells, broken pulls, torn liners. Bring it in.
+            </p>
+
+            <ul className="mt-7 grid gap-3 sm:grid-cols-2">
+              {[
+                'Soft, hard-shell, and fiberglass cases',
+                'Telescoping handle replacement',
+                'Wheel rebuilds and replacement',
+                'Zipper and pull replacement',
+                'Liner repair and reinforcement',
+                'Strap and exterior repair',
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-2.5 text-sm text-charcoal"
+                >
+                  <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-burgundy" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a href={businessInfo.phone.tel} className="btn-primary">
+                Call for a quote
+              </a>
+              <a
+                href={businessInfo.phone.sms}
+                className="btn-ghost"
+              >
+                Text a photo
+              </a>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.1} className="lg:col-span-5">
+            <div className="relative">
+              <div
+                className="aspect-[4/5] w-full overflow-hidden rounded-card border border-warmgray-200/70 bg-gradient-to-br from-warmgray-200 via-warmgray-100 to-cream shadow-card"
+                aria-hidden="true"
+              >
+                <div className="flex h-full items-center justify-center p-6 text-center">
+                  <span className="font-display text-sm uppercase tracking-[0.18em] text-warmgray-500">
+                    [PHOTO: Hard-shell luggage repair example]
+                  </span>
+                </div>
+              </div>
+              <div className="absolute -bottom-5 -left-5 hidden rounded-card bg-charcoal px-5 py-4 text-cream shadow-deep sm:block">
+                <p className="text-xs uppercase tracking-[0.18em] text-tan">
+                  Local since 2000
+                </p>
+                <p className="mt-1 font-display text-2xl font-semibold">
+                  {businessInfo.yearsInBusiness}+ years
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CheckIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="3 8.5 6.5 12 13 4.5" />
+    </svg>
   );
 }
 
