@@ -1,9 +1,15 @@
+import { Link } from 'react-router-dom';
 import { businessInfo } from '@/config/businessInfo';
 import { FadeIn } from '@/components/FadeIn';
 import { ServiceCard } from '@/components/ServiceCard';
 import { ReviewCard, Stars } from '@/components/ReviewCard';
+import {
+  BeforeAfterSlider,
+  PlaceholderImage,
+} from '@/components/BeforeAfterSlider';
 import { homeServices } from '@/config/services';
 import { reviews } from '@/config/reviews';
+import { homeGalleryPreview } from '@/config/gallery';
 import { FLOATING_CALL_ANCHOR_ATTR } from '@/layout/FloatingCallButton';
 
 export default function Home() {
@@ -15,6 +21,7 @@ export default function Home() {
       <ProductsCallout />
       <WhyChooseUs />
       <Testimonials />
+      <BeforeAfterPreview />
     </>
   );
 }
@@ -139,6 +146,76 @@ function ProductsCallout() {
         </FadeIn>
       </div>
     </section>
+  );
+}
+
+function BeforeAfterPreview() {
+  return (
+    <section
+      className="section bg-warmgray-50"
+      aria-labelledby="before-after-heading"
+    >
+      <div className="container-prose">
+        <FadeIn>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="eyebrow">Real repairs</p>
+              <h2
+                id="before-after-heading"
+                className="mt-3 max-w-2xl font-display text-3xl font-semibold leading-tight text-charcoal sm:text-4xl"
+              >
+                Before and after — drag to compare.
+              </h2>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-warmgray-700">
+                Each piece comes back to you cleaner, stronger, and ready for
+                another decade of wear.
+              </p>
+            </div>
+            <Link to="/gallery" className="btn-ghost">
+              View full gallery
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </FadeIn>
+
+        <ul className="mt-12 grid gap-6 md:grid-cols-3" role="list">
+          {homeGalleryPreview.map((item, idx) => (
+            <li key={item.id}>
+              <FadeIn delay={idx * 0.06}>
+                <BeforeAfterSlider
+                  ariaLabel={`${item.title} before and after`}
+                  beforeNode={
+                    <PlaceholderImage label={item.beforeLabel} variant="before" />
+                  }
+                  afterNode={
+                    <PlaceholderImage label={item.afterLabel} variant="after" />
+                  }
+                  caption={item.title}
+                />
+              </FadeIn>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function ArrowRight({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="2" y1="8" x2="13" y2="8" />
+      <polyline points="9 4 13 8 9 12" />
+    </svg>
   );
 }
 
